@@ -7,13 +7,13 @@ SELECT * FROM tienda.producto;
 -- Llista el nom dels productes, el preu en euros i el preu en dòlars estatunidencs (USD).
 SELECT precio precio_euros, precio*1.06 precio_dolares FROM tienda.producto;
 -- Llista el nom dels productes, el preu en euros i el preu en dòlars estatunidencs (USD). Utilitza els següents àlies per a les columnes: nom de producto, euros, dòlars.
-SELECT precio euros, precio*1.06 dolares FROM tienda.producto;
+SELECT nombre, precio euros, precio*1.06 dolares FROM tienda.producto;
 -- Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a majúscula.
 SELECT UPPER(nombre), precio FROM tienda.producto;
 -- Llista els noms i els preus de tots els productes de la taula producto, convertint els noms a minúscula.
 SELECT LOWER(nombre), precio FROM tienda.producto;
 -- Llista el nom de tots els fabricants en una columna, i en una altra columna obtingui en majúscules els dos primers caràcters del nom del fabricant.
-SELECT nombre, UPPER(LEFT(nombre, 2)) FROM tienda.producto; 
+SELECT nombre, UPPER(LEFT(nombre, 2)) FROM tienda.fabricante; 
 -- Llista els noms i els preus de tots els productes de la taula producto, arrodonint el valor del preu.
 SELECT nombre, ROUND(precio) FROM tienda.producto;
 -- Llista els noms i els preus de tots els productes de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.

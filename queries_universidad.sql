@@ -3,7 +3,7 @@ SELECT apellido1, apellido2, nombre FROM universidad.persona ORDER BY apellido1,
 -- Esbrina el nom i els dos cognoms dels alumnes que no han donat d'alta el seu número de telèfon en la base de dades.
 SELECT nombre, apellido1, apellido2 FROM universidad.persona WHERE telefono IS NULL;
 -- Retorna el llistat dels alumnes que van néixer en 1999.
-SELECT * FROM universidad.persona WHERE YEAR(fecha_nacimiento) >= 1999;
+SELECT * FROM universidad.persona WHERE YEAR(fecha_nacimiento) = 1999;
 -- Retorna el llistat de professors/es que no han donat d'alta el seu número de telèfon en la base de dades i a més el seu NIF acaba en K.
 SELECT * FROM universidad.persona WHERE tipo = 'profesor' AND telefono IS NULL AND RIGHT(nif, 1) = 'k'; 
 -- Retorna el llistat de les assignatures que s'imparteixen en el primer quadrimestre, en el tercer curs del grau que té l'identificador 7.
@@ -20,7 +20,7 @@ SELECT apellido1, apellido2, nombre FROM universidad.alumno_se_matricula_asignat
 -- Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom.
 SELECT d.nombre departamento, apellido1, apellido2, p.nombre FROM universidad.persona p LEFT JOIN universidad.profesor pr ON p.id = pr.id_profesor LEFT JOIN universidad.departamento d ON pr.id_departamento = d.id ORDER BY d.nombre, apellido1, apellido2, p.nombre ASC;
 -- Retorna un llistat amb els professors/es que no estan associats a un departament.
-SELECT apellido1, apellido2, p.nombre FROM universidad.persona p LEFT JOIN universidad.profesor pr ON p.id = pr.id_profesor LEFT JOIN universidad.departamento d ON pr.id_departamento = d.id WHERE d.nombre IS NOT NULL ORDER BY d.nombre, apellido1, apellido2, p.nombre ASC;
+SELECT apellido1, apellido2, p.nombre FROM universidad.persona p LEFT JOIN universidad.profesor pr ON p.id = pr.id_profesor LEFT JOIN universidad.departamento d ON pr.id_departamento = d.id WHERE d.nombre IS NULL ORDER BY d.nombre, apellido1, apellido2, p.nombre ASC;
 -- Retorna un llistat amb els departaments que no tenen professors/es associats.
 SELECT d.nombre departamento FROM universidad.persona p RIGHT JOIN universidad.profesor pr ON p.id = pr.id_profesor RIGHT JOIN universidad.departamento d ON pr.id_departamento = d.id WHERE p.id IS NULL ORDER BY d.nombre ASC;
 -- Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
